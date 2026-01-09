@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 1</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página inicial</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Aula-1</h1>
-
+    <div class="container">
+        <h1>Boas vindas!</h1>
+        <p>Vamos personalizar sua saudação usando JavaScript!</p>
+        <div class="saudacao" id="mensegemsaudacao">Olá, visitante!</div>
+        <button onclick="btn()">Personalizar saudação!</button>
+    </div>
     <script>
-        
+        function btn(){
+            document.getElementById('mensegemsaudacao').textContent='Olá,Pedro!'
+            console.log('Nome alterado!')
+        }
+        let n1 = 0
+        // while (true){
+        //     console.log('Numero da vez:'+n1)
+        //     n1 +=1
+        // }
     </script>
 </body>
 </html>
+
+<!--Estudo sobre variaveis,onclick e documentos id-->
