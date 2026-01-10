@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #0056b3; }
+        #resposta {
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="number" placeholder="Primeiro número" id="n1">
+        <input type="number" placeholder="Segundo número" id="n2">
+        <button type="button" onclick="calcular()">Calcular Soma</button>
+        <p id="resposta"></p>
+    </form>
+    <script>
+        let p = document.getElementById('resposta')
+        function calcular(){
+            const n1 = Number(document.getElementById('n1').value)
+            const n2 = Number(document.getElementById('n2').value)
+            const resposta = n1 + n2
+            if (document.getElementById('n1').value === '' || document.getElementById('n2').value === ''){
+                p.textContent='Prencha todos os campos'
+            }else{
+                p.textContent='Seu resultado é '+resposta
+            }
+        }
+    </script>
+</body>
+</html>
