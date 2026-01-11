@@ -20,10 +20,21 @@ body {
 h1 {
     color: #331F19;
 }
-p {
+/* p {
     color: #331F19;
     font-size: 1.1em;
+} */
+/* desafio da aula  */
+#mensagem.erro{
+    color: red;
+    font-size: 1.1em;
 }
+#mensagem.coreto{
+    color: green;
+    font-size: 1.1em;
+}
+
+
 button {
     background-color: #60041A;
     color: #F4F0EA;

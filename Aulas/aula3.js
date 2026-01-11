@@ -3,11 +3,14 @@
 function adicionarTarefa(){
     const input = document.getElementById('input-tarefa')
     const tarefa = input.value
-    
+    const paragrafo = document.getElementById('mensagem')
     if (tarefa === ''){
-        document.getElementById('mensagem').textContent='Tarefa vazia,erro ao adicionar'
+        paragrafo.textContent='Erro,Não é possivel adicionar uma tarefa vazia'
+        paragrafo.className='erro'
+        
     }else{
-        document.getElementById('mensagem').textContent='Tarefa Adicionada:'+tarefa
+        paragrafo.textContent='Tarefa Adicionada:'+tarefa
+        paragrafo.className='coreto'
         let Listatarefas = document.getElementById('listaTarefas')
         //cria elemento li
         let novaTarefa = document.createElement('li')
