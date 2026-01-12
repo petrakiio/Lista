@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Analisador</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+        *{
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background: #0f172a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container{
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .entrada{
+            display: flex;
+            gap: 5px;
+        }
+
+        input{
+            flex: 1;
+            padding: 8px;
+        }
+
+        button{
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        ul{
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .resultado p{
+            margin: 5px 0;
+        }
+
+        #aviso{
+            margin-top: 10px;
+            color: #f87171;
+            text-align: center;
+        }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Analisador de Números</h1>
+
+    <div class="entrada">
+      <input type="number" id="numero" placeholder="Digite um número">
+      <button id="adicionar">Adicionar</button>
+    </div>
+
+    <ul id="lista"></ul>
+
+    <div class="resultado">
+      <p>Total de números: <span id="qtd">0</span></p>
+      <p>Soma: <span id="soma">0</span></p>
+      <p>Maior: <span id="maior">-</span></p>
+      <p>Menor: <span id="menor">-</span></p>
+    </div>
+
+    <p id="aviso"></p>
+  </div>
+
+  <script src="exercicio2.js"></script>
+</body>
+</html>
