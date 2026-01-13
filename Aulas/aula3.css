@@ -24,15 +24,15 @@ h1 {
     color: #331F19;
     font-size: 1.1em;
 } */
-/* desafio da aula  */
 #mensagem.erro{
     color: red;
     font-size: 1.1em;
 }
-#mensagem.coreto{
+#mensagem.pass{
     color: green;
     font-size: 1.1em;
 }
+
 
 
 button {

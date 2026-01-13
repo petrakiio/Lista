@@ -1,28 +1,36 @@
-//mini lista de tarefas 
-const btnTarefa = document.getElementById('adcTarefa')
-const btnLimpar = document.getElementById('limpar')
 
-btnTarefa.addEventListener('click', () =>{
-        const inputTarefa = document.getElementById("inputTarefa")
-        let tarefa = inputTarefa.value.trim()
-        const mensagem = document.getElementById("mensagem")
+const btnt = document.getElementById('adcTarefa')
+let tarefas = []
 
-        if (tarefa == "") {
-            mensagem.textContent = "Digite uma tarefa!";
-        } else {
-            mensagem.textContent = "Tarefa adicionada com sucesso!"
-            renderizar(tarefa);
-        }
-        inputTarefa.value = ""
+btnt.addEventListener('click', () =>{
+    const inputTarefa = document.getElementById("input-tarefa")
+    let tarefa = inputTarefa.value.trim()
+
+    const mensagem = document.getElementById("mensagem")
+
+    if (tarefa == "") {
+        let mensagemErro = "Digite uma tarefa para adicioná-la a sua lista!"
+        mensagem.textContent = mensagemErro
+        mensagem.className='erro'
+    } else {
+        let mensagemSucesso = "Tarefa adicionada com sucesso!"
+        mensagem.textContent = mensagemSucesso
+        mensagem.className='pass'
+        tarefas.push(tarefa)
+        renderizarTarefas()
+    }
+
+    inputTarefa.value = ""
 })
 
-function renderizar(textoDaTarefa) {
+function renderizarTarefas() {
     const listaTarefas = document.getElementById("listaTarefas")
-    let novaTarefa = document.createElement("li")
-    novaTarefa.textContent = textoDaTarefa
-    listaTarefas.appendChild(novaTarefa)
-}
+    listaTarefas.innerHTML = ""
 
-btnLimpar.addEventListener('click', () => {
-    
-})
+    let i = 0 
+    for (i; i < tarefas.length; i++){
+        let novaTarefa = document.createElement("li")
+        novaTarefa.textContent = tarefas[i]
+        listaTarefas.appendChild(novaTarefa)
+    }
+}
