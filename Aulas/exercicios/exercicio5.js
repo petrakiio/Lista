@@ -1,19 +1,13 @@
 const cores = ['blue','red','green','yellow','lightgreen','brown','white','black']
 const btn = document.getElementById('btn')
 const body = document.body
+btn.textContent='Mudar cor'
 
 btn.addEventListener('click',() =>{
-    if (body.style.background === 'red'){
-        body.style.background='white'
+    let cor = cores[Math.floor(Math.random() * cores.length)]
+    if (body.style.background === cor){
+        cor = cores[Math.floor(Math.random() * cores.length)]
+    }else{
+        body.style.background=cor
     }
-    else{
-        body.style.background='red'
-    }
-})
-
-btn.addEventListener('mouseenter', ()=>{
-    btn.textContent='Clique em min'
-})
-btn.addEventListener('mouseout',()=>{
-    btn.textContent='Mudar cor'
 })
