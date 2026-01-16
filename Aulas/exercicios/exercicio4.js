@@ -6,22 +6,47 @@ let primeirocard = null
 let segundocard = null
 let travado = false
 
-for(const valor of n){
+for (const valor of n) {
     const bloco = document.createElement('div')
     bloco.classList.add('card')
     bloco.dataset.valor = valor
-    bloco.textContent=''
+    bloco.textContent = ''
 
-    bloco.addEventListener('click', ()=>verificar(bloco))
+    bloco.addEventListener('click', () => verificar(bloco))
 
     card.appendChild(bloco)
 }
 
-function verificar(bloco){
-    let card_click = bloco.dataset.valor
-    primeirocard = card_click
-    segundocard = card_click
+function verificar(bloco) {
+    if (travado) return
+
+    if (bloco === primeirocard) return
+
+    // revela o card
     bloco.classList.add('revelado')
-    bloco.textContent = card_click
-    console.log(primeirocard,segundocard)
+    bloco.textContent = bloco.dataset.valor
+
+    if (primeirocard === null) {
+        primeirocard = bloco
+        return
+    }
+
+
+    segundocard = bloco
+    travado = true
+
+    setTimeout(() => {
+        if (primeirocard.dataset.valor === segundocard.dataset.valor) {
+            primeirocard.classList.add('bloqueado')
+            segundocard.classList.add('bloqueado')
+        } else {
+            primeirocard.classList.remove('revelado')
+            segundocard.classList.remove('revelado')
+            primeirocard.textContent = ''
+            segundocard.textContent = ''
+        }
+        primeirocard = null
+        segundocard = null
+        travado = false
+    }, 1000)
 }
