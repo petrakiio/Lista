@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo da Memória</title>
+
+  <style>
+    body {
+      background: #020617;
+      color: white;
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .card {
+      width: 80px;
+      height: 80px;
+      background: #2563eb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 8px;
+      user-select: none;
+    }
+
+    .card.revelado {
+      background: #16a34a;
+    }
+
+    .card.bloqueado {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Jogo da Memória</h1>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script src="exercicio4.js"></script>
+</body>
+</html>
