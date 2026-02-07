@@ -1,95 +1,90 @@
-const btnt = document.getElementById('adcTarefa')
-const mensagem = document.getElementById("mensagem")
-let tarefas = []
+const btnAdicionar = document.getElementById('adcTarefa')
+const mensagem = document.getElementById('mensagem')
+const inputTarefa = document.getElementById('input-tarefa')
+const listaTarefas = document.getElementById('listaTarefas')
+const container = document.querySelector('.container')
+const tarefas = []
 
-btnt.addEventListener('click', () =>{
-    const inputTarefa = document.getElementById("input-tarefa")
-    let tarefa = inputTarefa.value.trim()
+btnAdicionar.addEventListener('click', () => {
+    const tarefa = inputTarefa.value.trim()
 
-
-
-    if (tarefa == "") {
-        let mensagemErro = "Digite uma tarefa para adicioná-la a sua lista!"
-        mensagem.textContent = mensagemErro
-        mensagem.className='erro'
+    if (tarefa === '') {
+        setMensagem('Digite uma tarefa para adicioná-la a sua lista!', 'erro')
     } else {
-        let mensagemSucesso = "Tarefa adicionada com sucesso!"
-        mensagem.textContent = mensagemSucesso
-        mensagem.className='pass'
+        setMensagem('Tarefa adicionada com sucesso!', 'pass')
         tarefas.push(tarefa)
         renderizarTarefas()
     }
 
-    inputTarefa.value = ""
+    inputTarefa.value = ''
 })
 
 function renderizarTarefas() {
-    const listaTarefas = document.getElementById("listaTarefas")
-    listaTarefas.innerHTML = ""
+    listaTarefas.innerHTML = ''
 
-    for (let i = 0 ; i < tarefas.length; i++){
-        let novaTarefa = document.createElement("li")
-        novaTarefa.textContent = tarefas[i]
-        //botão de remover
-        removebtn()
-        novaTarefa.appendChild(removebtn)
-        //botão de editar
-        editarbtn()
-
-        novaTarefa.appendChild(editorbtn)
+    tarefas.forEach((tarefa, indice) => {
+        const novaTarefa = document.createElement('li')
+        novaTarefa.textContent = tarefa
+        novaTarefa.appendChild(criarBotaoRemover(indice))
+        novaTarefa.appendChild(criarBotaoEditar(indice))
         listaTarefas.appendChild(novaTarefa)
+    })
+
+    if (tarefas.length === 3) {
+        criarBotaoLimpar()
     }
-    if (tarefas.length === 3){
-            criarbtn()
-        }
 }
 
-function removebtn(){
-    const removebtn = document.createElement('button')
-        removebtn.textContent='Remover'
-        removebtn.className='remover'
-        removebtn.onclick= () => removertarefa(i) //arrow function
-}
-function editarbtn(){
-    const editorbtn = document.createElement('button')
-        editorbtn.textContent='Editar'
-        editorbtn.className='editar'
-        editorbtn.onclick = () => editartarefa(i)
+function criarBotaoRemover(indice) {
+    return criarBotao('Remover', 'remover', () => removerTarefa(indice))
 }
 
-function criarbtn(){
-    //evita botões duplicados
-    if (document.querySelector('.botao_lista')) return;
-
-    const btnL = document.createElement('button')
-    btnL.textContent='Esvaziar lixeira'
-    btnL.onclick = () => esvaziar()
-    btnL.className='botao_lista'
-
-    //adicionar no .container
-    document.querySelector('.container').appendChild(btnL)
+function criarBotaoEditar(indice) {
+    return criarBotao('Editar', 'editar', () => editarTarefa(indice))
 }
 
-function esvaziar(){
+function criarBotaoLimpar() {
+    if (document.querySelector('.botao_lista')) return
+
+    const btn = criarBotao('Esvaziar lixeira', 'botao_lista', esvaziar)
+    container.appendChild(btn)
+}
+
+function esvaziar() {
     tarefas.length = 0
-    mensagem.textContent='Lista limpa'
-    mensagem.className='pass'
+    setMensagem('Lista limpa', 'pass')
     const btn = document.querySelector('.botao_lista')
-    if (tarefas.length === 0) btn.remove() 
+    if (btn) btn.remove()
     renderizarTarefas()
 }
 
-function removertarefa(indice){
+function removerTarefa(indice) {
     tarefas.splice(indice, 1)
     renderizarTarefas()
 }
-function editartarefa(indece){
-    const tarefaEditada = prompt('Edite a sua tarefa').trim()
-    if (tarefaEditada === ''){
-        mensagem.textContent='Coloque um novo nome pra editar!'
-        mensagem.className='erro'
-    }else{
-        tarefas[indece] = tarefaEditada
+
+function editarTarefa(indice) {
+    const entrada = prompt('Edite a sua tarefa')
+    if (entrada === null) return
+
+    const tarefaEditada = entrada.trim()
+    if (tarefaEditada === '') {
+        setMensagem('Coloque um novo nome pra editar!', 'erro')
+    } else {
+        tarefas[indice] = tarefaEditada
         renderizarTarefas()
     }
+}
+
+function setMensagem(texto, classe) {
+    mensagem.textContent = texto
+    mensagem.className = classe
+}
+
+function criarBotao(texto, classe, onClick) {
+    const botao = document.createElement('button')
+    botao.textContent = texto
+    botao.className = classe
+    botao.onclick = onClick
+    return botao
 }
