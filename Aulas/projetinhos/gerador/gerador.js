@@ -11,7 +11,7 @@ const simbles = [
   ':',"'",'"',',','.','<','>','/','?','\\','|','`','~'
 ];
 
-function gerarSenha(tamanho = 30) {
+export function gerarSenha(tamanho = 30) {
   const listUnique = char.concat(numbers, simbles);
   let senha = "";
   for (let i = 0; i < tamanho; i++) {
@@ -20,6 +20,3 @@ function gerarSenha(tamanho = 30) {
   }
   return senha;
 }
-
-
-console.log(gerarSenha(30));
