@@ -11,10 +11,15 @@ const simbles = [
   ':',"'",'"',',','.','<','>','/','?','\\','|','`','~'
 ];
 
-function random(){
-    const listUnique= char.concat(numbers,simbles);
-    const random = Math.floor(Math.random() * listUnique.length);
-    return listUnique[random];
-};
+function gerarSenha(tamanho = 30) {
+  const listUnique = char.concat(numbers, simbles);
+  let senha = "";
+  for (let i = 0; i < tamanho; i++) {
+    const j = Math.floor(Math.random() * listUnique.length);
+    senha += listUnique[j];
+  }
+  return senha;
+}
 
-console.log(random());
+
+console.log(gerarSenha(30));
