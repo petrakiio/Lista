@@ -10,3 +10,11 @@ const simbles = [
   '-','_','=','+','[',']','{','}',';',';',
   ':',"'",'"',',','.','<','>','/','?','\\','|','`','~'
 ];
+
+function random(){
+    const listUnique= char.concat(numbers,simbles);
+    const random = Math.floor(Math.random() * listUnique.length);
+    return listUnique[random];
+};
+
+console.log(random());
