@@ -1,29 +1,31 @@
-let input;
 const btn = document.getElementById('btn');
+const input = document.getElementById('msg');
+const chatBody = document.querySelector('.chat-body');
 
-function GetValue(){
-    input = document.getElementById('msg').value;
-    return {msg:input};
-};
-
-function Create(msg){
-    const div = document.createElement('div');
-    const select = document.createElement('section');
-    select.classList.add('chat-body')
-    div.classList.add('message.sent');
-    div.textContent=msg;
-    select.appendChild(div);
-};
-
-function clear(){
-    input = document.getElementById('msg');
-    input.value='';
+function getValue() {
+    return input.value.trim();
 }
 
-function Main(){
-    console.log(GetValue())
-    Create(GetValue());
-    clear();
-};
+function createMessage(msg) {
+    const div = document.createElement('div');
+    div.classList.add('message', 'sent');
+    div.textContent = msg;
+    chatBody.appendChild(div);
+}
 
-btn.addEventListener('click',Main);
+function clearInput() {
+    input.value = '';
+}
+
+function main() {
+    const msg = getValue();
+
+    if (!msg) {
+        return;
+    }
+
+    createMessage(msg);
+    clearInput();
+}
+
+btn.addEventListener('click', main);
