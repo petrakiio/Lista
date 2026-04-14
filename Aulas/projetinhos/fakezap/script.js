@@ -7,13 +7,19 @@ function GetValue(){
 };
 
 function Create(msg){
-    const div = createElement('div');
+    const div = document.createElement('div');
     div.classList.add('message sent');
     div.textContent=msg;
 };
 
+function clear(){
+    input = document.getElementById('msg');
+    input.value=0;
+}
+
 function Main(){
     Create(GetValue());
+    clear();
 };
 
 btn.addEventListener('click',Main);
