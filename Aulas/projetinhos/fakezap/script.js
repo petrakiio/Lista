@@ -8,16 +8,20 @@ function GetValue(){
 
 function Create(msg){
     const div = document.createElement('div');
-    div.classList.add('message sent');
+    const select = document.createElement('section');
+    select.classList.add('chat-body')
+    div.classList.add('message.sent');
     div.textContent=msg;
+    select.appendChild(div);
 };
 
 function clear(){
     input = document.getElementById('msg');
-    input.value=0;
+    input.value='';
 }
 
 function Main(){
+    console.log(GetValue())
     Create(GetValue());
     clear();
 };
