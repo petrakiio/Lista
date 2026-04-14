@@ -11,11 +11,6 @@ function Main(){
     btn.textContent = "Click Here";
     document.body.appendChild(btn);
 
-    document.querySelector('button').addEventListener('click',()=>{
-        
-    });
-}
-
-
+    document.querySelector('button').addEventListener('click',Layout);
+};
 document.addEventListener('DOMContentLoaded',Main);
-
