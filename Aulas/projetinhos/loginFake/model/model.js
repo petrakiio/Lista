@@ -4,7 +4,7 @@ class User{
         this.age = age;
         this.email = email;
     }
-    (){
-
+    Insert(user){
+        localStorage.setItem("user",JSON.stringify(user));
     }
 }
