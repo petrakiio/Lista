@@ -1,4 +1,4 @@
-class User {
+export class User {
     constructor(name, age, email) {
         this.id = Date.now(); // id único
         this.name = name;
