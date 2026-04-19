@@ -1,18 +1,9 @@
 //Importando classe
 import { User} from "../model/model";
 
-function GetValues(){
-    return {
-        Name:document.getElementById('name').value,
-        Age:document.getElementById('age').value,
-        Email:document.getElementById('email').value
-    }
-}
-
-export function Insert(){
+export function Insert(name,email,age){
     try {
-        const values = GetValues();
-        const user = new User(values.Name,values.Age,values.Email);
+        const user = new User(name,age,email);
         user.save(user);
         return true
     }catch(error){
