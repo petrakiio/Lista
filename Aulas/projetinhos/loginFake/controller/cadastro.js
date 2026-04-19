@@ -9,8 +9,14 @@ function GetValues(){
     }
 }
 
-function Main(){
-    const values = GetValues();
-    const user = new User(values.Name,values.Age,values.Email);
-    user.save(user);
+export function Insert(){
+    try {
+        const values = GetValues();
+        const user = new User(values.Name,values.Age,values.Email);
+        user.save(user);
+        return true
+    }catch(error){
+        console.log('erro')
+        return false
+    }
 }
