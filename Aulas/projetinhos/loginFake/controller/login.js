@@ -1,11 +1,5 @@
 import { User } from "../model/model";
 
-function GetValues(){
-    return {
-        name:document.getElementById('name').value,
-        email:document.getElementById('email').value
-    }
-}
 
 function GetUser(dados,users){
     for(const user of users){
@@ -16,9 +10,10 @@ function GetUser(dados,users){
     return false;
 }
 
-export function Login(){
+export function Login(name,email){
     try{
-        const result = GetUser(GetValues,User.getAll);
+        const values = {name:name,email:email};
+        const result = GetUser(values,User.getAll);
         if (result === false) return false;
         return result.id;
     }catch{
