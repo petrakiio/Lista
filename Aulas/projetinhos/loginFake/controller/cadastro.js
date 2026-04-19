@@ -10,5 +10,7 @@ function GetValues(){
 }
 
 function Main(){
-    const values = GetValues()
+    const values = GetValues();
+    const user = new User(values.Name,values.Age,values.Email);
+    user.save(user);
 }
