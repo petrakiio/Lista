@@ -18,12 +18,15 @@ function Create(result){
     if (result === false){
         const h2 = document.createElement('h2');
         h2.textContent='Erro ao inserir os dados!';
+        sleep();
         h2.innerHTML='';
+    }else{
+        window.location.href='./login.html'
     }
 }
 
 function Main(){
     const values = GetValeus();
     const result = Insert(values.name,values.age,values.email);
-
+    Create(result);
 }
