@@ -17,6 +17,12 @@ function GetUser(dados,users){
 }
 
 export function Login(){
-    const result = GetUser(GetValues,User.getAll);
-    
+    try{
+        const result = GetUser(GetValues,User.getAll);
+        if (result === false) return false;
+        return result.id;
+    }catch{
+        console.log('erro');
+        return false;
+    }
 }
