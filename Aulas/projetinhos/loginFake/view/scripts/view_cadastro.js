@@ -1,34 +1,36 @@
-import { Insert } from "../../controller/cadastro";
+import { Insert } from "../../controller/cadastro.js";
 
-function GetValeus(){
+function GetValues() {
     return {
-        name:document.getElementById('name').value,
-        age:document.getElementById('age').value,
-        email:document.getElementById('email').value
+        name: document.getElementById("name").value.trim(),
+        age: document.getElementById("age").value.trim(),
+        email: document.getElementById("email").value.trim()
+    };
+}
+
+function ShowMessage(message) {
+    const feedback = document.getElementById("feedback");
+    feedback.textContent = message;
+}
+
+function Create(result) {
+    if (result === false) {
+        ShowMessage("Erro ao inserir os dados!");
+    } else {
+        window.location.href = "./login.html";
     }
 }
 
-function sleep() {
-    setTimeout(() => {
-        console.log('Esperando')
-    }, 10000);
-}
+function Main() {
+    const values = GetValues();
 
-function Create(result){
-    if (result === false){
-        const h2 = document.createElement('h2');
-        h2.textContent='Erro ao inserir os dados!';
-        sleep();
-        h2.innerHTML='';
-    }else{
-        window.location.href='./login.html'
+    if (!values.name || !values.age || !values.email) {
+        ShowMessage("Preencha todos os campos.");
+        return;
     }
-}
 
-function Main(){
-    const values = GetValeus();
-    const result = Insert(values.name,values.age,values.email);
+    const result = Insert(values.name, values.age, values.email);
     Create(result);
 }
 
-document.getElementById('btn').addEventListener('click',Main);
+document.getElementById("btn").addEventListener("click", Main);

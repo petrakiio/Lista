@@ -1,32 +1,36 @@
-import { Login } from "../../controller/login";
+import { Login } from "../../controller/login.js";
 
-function GetValeus(){
+function GetValues() {
     return {
-        name:document.getElementById('name').value,
-        email:document.getElementById('email').value
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim()
+    };
+}
+
+function ShowMessage(message) {
+    const feedback = document.getElementById("feedback");
+    feedback.textContent = message;
+}
+
+function Create(result) {
+    if (result === false) {
+        ShowMessage("Usuario nao encontrado!");
+    } else {
+        localStorage.setItem("loggedUserId", String(result));
+        window.location.href = "./index.html";
     }
 }
 
-function sleep() {
-    setTimeout(() => {
-        console.log('Esperando')
-    }, 10000);
-}
+function Main() {
+    const values = GetValues();
 
-
-function Create(result){
-    if (result === false){
-        const h2 = document.createElement('h2');
-        h2.textContent='Usuario não encontrado!';
-        sleep();
-        h2.innerHTML='';
-    }else{
-        window.location.href='./index.html'
+    if (!values.name || !values.email) {
+        ShowMessage("Preencha nome e email.");
+        return;
     }
-}
 
-function Main(){
-    const values = GetValeus();
-    const result = Login(values.name,values.email);
+    const result = Login(values.name, values.email);
     Create(result);
 }
+
+document.getElementById("btn").addEventListener("click", Main);

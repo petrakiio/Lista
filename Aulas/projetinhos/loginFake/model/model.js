@@ -17,13 +17,15 @@ export class User {
     }
 
     static getById(id) {
+        const parsedId = Number(id);
         const users = JSON.parse(localStorage.getItem("users")) || [];
-        return users.find(user => user.id === id);
+        return users.find(user => user.id === parsedId);
     }
 
     static delete(id) {
+        const parsedId = Number(id);
         const users = JSON.parse(localStorage.getItem("users")) || [];
-        const filtered = users.filter(user => user.id !== id);
+        const filtered = users.filter(user => user.id !== parsedId);
         localStorage.setItem("users", JSON.stringify(filtered));
     }
 }
