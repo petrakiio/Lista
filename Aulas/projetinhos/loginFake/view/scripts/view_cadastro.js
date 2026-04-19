@@ -31,4 +31,4 @@ function Main(){
     Create(result);
 }
 
-document.getElementById('')
+document.getElementById('btn').addEventListener('click',Main);
