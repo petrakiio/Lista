@@ -30,3 +30,5 @@ function Main(){
     const result = Insert(values.name,values.age,values.email);
     Create(result);
 }
+
+document.getElementById('')
