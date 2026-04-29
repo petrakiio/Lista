@@ -15,4 +15,8 @@ export class Persona{
                 return `${this.name} recebeu um critial damage de ${this.life -= (dam * 2)}`;
         }
     }
+    SawInventory(){
+         console.log(`itens do inventario:${this.inventory}`);
+    }
+    
 }
