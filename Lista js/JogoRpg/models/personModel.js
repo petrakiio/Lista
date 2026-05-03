@@ -15,6 +15,13 @@ export class Persona{
                 return `${this.name} recebeu um critial damage de ${this.life -= (dam * 2)}`;
         }
     }
+    GiveDamage(enimie){
+        if(this.inventory != null){//Se o inventario não for nulo
+            this.inventory[0].damage += this.damage; //Some o valor de dano dele com do player
+            enimie.ReciveDamage(this.damage);
+        }
+        enimie.ReciveDamage(this.damage);
+    }
     SawInventory(){
          console.log(`itens do inventario:${this.inventory}`);
     }
