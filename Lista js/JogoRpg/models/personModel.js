@@ -4,6 +4,7 @@ export class Persona{
         this.damage = damage;
         this.life = life;
         this.inventory = [];
+        this.honor = 0;
     }
     ReciveDamage(dam,dado){
         switch(dado){
@@ -25,5 +26,10 @@ export class Persona{
     SawInventory(){
          console.log(`itens do inventario:${this.inventory}`);
     }
-    
+    AddHonor(){
+        this.honor += 5;
+    }
+    RemoveHonor(){
+        this.honor -= 5;
+    }
 }
