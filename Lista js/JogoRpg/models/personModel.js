@@ -7,6 +7,10 @@ export class Persona{
         this.honor = 0;
     }
     ReciveDamage(dam,dado){
+        const df = this.VerifInventoryDefense();
+        if (dam < df.defense){
+            return `O item:${df.name}; Bloqueou o ataque`;
+        }
         switch(dado){
             case 0:
                 return `${this.name} Desviou do golpe`;
@@ -17,14 +21,31 @@ export class Persona{
         }
     }
     GiveDamage(enimie){
-        if(this.inventory != null){//Se o inventario não for nulo
-            this.inventory[0].damage += this.damage; //Some o valor de dano dele com do player
-            enimie.ReciveDamage(this.damage);
+        if(0 < this.inventory.length){
+            const arm = this.VerifInventoryDamage();
+            let danoFinal = this.damage += arm.damage;
+            return `${this.name}: deu ${danoFinal} em ${enimie.name}`
         }
-        enimie.ReciveDamage(this.damage);
     }
     SawInventory(){
          console.log(`itens do inventario:${this.inventory}`);
+    }
+    VerifInventoryDefense(){
+        for (let i = 0; i < this.inventory.length; i++) {
+            const arm = this.inventory[i];
+
+            if (arm.category === 'defense') {
+                return arm;
+            }
+        }
+    }
+    VerifInventoryDamage(){
+        for(let i = 0; i < this.inventory.length;i++){
+            const arm = this.inventory[i];
+            if(arm.category === 'damage'){
+                return arm.damage;
+            }
+        }
     }
     AddHonor(){
         this.honor += 5;
