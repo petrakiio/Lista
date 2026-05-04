@@ -1,9 +1,11 @@
-import { CreatePlayer } from "../controller/configCharacter";
-import { CreateDado } from "../controller/configDado";
-import { Battle } from "../controller/batlleCharacter";
+import { CreatePlayer } from "../controller/configCharacter.js";
+import { CreateDado } from "../controller/configDado.js";
+import { Battle } from "../controller/batlleCharacter.js";
 
 function Main(){
     const player = CreatePlayer();
     const dado = CreateDado();
-    Battle(player,dado);
+    Battle(player, dado);
 }
+
+Main();
