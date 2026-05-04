@@ -1,5 +1,5 @@
-import { ListEnimies } from "../storage/enimeis";
-
+import { ListEnimiesLevelOne } from "../storage/enimeis";
+import { ListArmsLevelOne } from "../storage/arms";
 
 export class Dado{
     constructor(lados){
@@ -13,5 +13,8 @@ export class Dado{
         const spin = this.RotateDado();
         return ListEnimies[spin];
     }
-
+    RotateArms(){
+        const spin = this.RotateDado();
+        return ListArmsLevelOne[spin];
+    }
 }

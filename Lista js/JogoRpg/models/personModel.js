@@ -42,7 +42,7 @@ export class Persona{
     VerifInventoryDamage(){
         for(let i = 0; i < this.inventory.length;i++){
             const arm = this.inventory[i];
-            if(arm.category === 'damage'){
+            if(arm.category === 'atack'){
                 return arm.damage;
             }
         }
