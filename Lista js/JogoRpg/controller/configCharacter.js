@@ -14,7 +14,7 @@ export function CreatePlayer(){
     console.log('='.repeat(30));
     console.log('Vamos criar seu personagem');
     console.log('='.repeat(30));
-    const name = prompt('Seu Nome:');
+    const name = prompt('Seu Nome\nR:');
     Easteregg(name);
     console.log('Personagem criado!');
     return new Persona(name,100,100);
