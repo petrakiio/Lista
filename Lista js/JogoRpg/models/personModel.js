@@ -21,11 +21,14 @@ export class Persona{
         }
     }
     GiveDamage(enimie){
-        if(0 < this.inventory.length){
-            const arm = this.VerifInventoryDamage();
-            let danoFinal = this.damage += arm.damage;
-            return `${this.name}: deu ${danoFinal} em ${enimie.name}`
+        let danoFinal = this.damage;
+        if (0 < this.inventory.length) {
+            const armDamage = this.VerifInventoryDamage();
+            if (armDamage) {
+                danoFinal += armDamage;
+            }
         }
+        return enimie.ReciveDamage(danoFinal, 1);
     }
     Cure(){
         this.life += 10;
@@ -53,6 +56,7 @@ export class Persona{
                 return arm.damage;
             }
         }
+        return 0;
     }
     AddHonor(){
         this.honor += 5;

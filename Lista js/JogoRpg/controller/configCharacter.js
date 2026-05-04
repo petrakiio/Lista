@@ -1,4 +1,7 @@
-import { Persona } from "../models/personModel"
+import { createRequire } from "node:module";
+import { Persona } from "../models/personModel.js";
+
+const require = createRequire(import.meta.url);
 
 const prompt = require('prompt-sync')();
 
@@ -15,7 +18,10 @@ export function CreatePlayer(){
     console.log('Vamos criar seu personagem');
     console.log('='.repeat(30));
     const name = prompt('Seu Nome\nR:');
-    Easteregg(name);
+    const specialCharacter = Easteregg(name);
+    if (specialCharacter) {
+        return specialCharacter;
+    }
     console.log('Personagem criado!');
-    return new Persona(name,100,100);
+    return new Persona(name, 100, 100);
 }

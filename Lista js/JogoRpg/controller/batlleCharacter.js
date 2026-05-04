@@ -1,3 +1,6 @@
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
 const prompt = require('prompt-sync')();
 
 function EnimieIA(dado,player,enimie){
@@ -25,7 +28,7 @@ export function Battle(player, dado){
 
             switch(opn){
                 case '1':
-                    player.GiveDamage(enemy);
+                    console.log(player.GiveDamage(enemy, dado));
                     break;
 
                 case '2':
@@ -34,6 +37,7 @@ export function Battle(player, dado){
                 
                 case '3':
                     console.log(player.SawInventory());
+                    break;
                 
                 case '':
                     console.log(player.Status());
