@@ -27,6 +27,13 @@ export class Persona{
             return `${this.name}: deu ${danoFinal} em ${enimie.name}`
         }
     }
+    Cure(){
+        this.life += 10;
+        return `${this.name}:Curou 10 pontos`
+    }
+    Status(){
+        return `Nome:${this.name} Life:${this.life}`
+    }
     SawInventory(){
          console.log(`itens do inventario:${this.inventory}`);
     }
