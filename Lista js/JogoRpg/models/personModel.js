@@ -8,16 +8,21 @@ export class Persona{
     }
     ReciveDamage(dam,dado){
         const df = this.VerifInventoryDefense();
-        if (dam < df.defense){
+        if (df && dam < df.defense){
             return `O item:${df.name}; Bloqueou o ataque`;
         }
         switch(dado){
             case 0:
                 return `${this.name} Desviou do golpe`;
-            case 1:
-                return `${this.name} recebeu ${this.life -= dam} de dano!`;
-            case 2:
-                return `${this.name} recebeu um critial damage de ${this.life -= (dam * 2)}`;
+            case 1: {
+                this.life -= dam;
+                return `${this.name} recebeu ${dam} de dano! Vida restante: ${this.life}`;
+            }
+            case 2: {
+                const criticalDamage = dam * 2;
+                this.life -= criticalDamage;
+                return `${this.name} recebeu um critical damage de ${criticalDamage}! Vida restante: ${this.life}`;
+            }
         }
     }
     GiveDamage(enimie){
@@ -35,10 +40,10 @@ export class Persona{
         return `${this.name}:Curou 10 pontos`
     }
     Status(){
-        return `Nome:${this.name} Life:${this.life}`
+        return `Nome:${this.name} Life:${this.life} Damage:${this.damage}`;
     }
     SawInventory(){
-         console.log(`itens do inventario:${this.inventory}`);
+        return `itens do inventario: ${this.inventory.map((item) => item.name).join(', ') || 'vazio'}`;
     }
     VerifInventoryDefense(){
         for (let i = 0; i < this.inventory.length; i++) {
@@ -48,6 +53,7 @@ export class Persona{
                 return arm;
             }
         }
+        return null;
     }
     VerifInventoryDamage(){
         for(let i = 0; i < this.inventory.length;i++){

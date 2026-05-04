@@ -3,5 +3,6 @@ export class Arm{
         this.name = name;
         this.damage = damage;
         this.category = category;
+        this.defense = defense;
     }
 }
