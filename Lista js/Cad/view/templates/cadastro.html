@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <link rel="stylesheet" href="/style/cadastro.css">
 </head>
 <body>
     <h1>Cadastro</h1>
     <div class="content">
-        <form action="POST">
+        <form id="cadastro-form">
             <input type="text" placeholder="Seu nome" id="name">
-            <input type="email" placeholder="Seu email" id="emaiç">
+            <input type="email" placeholder="Seu email" id="email">
             <input type="password" placeholder="Sua senha" id="password">
+            <button id="btn" type="submit">Cadastrar</button>
         </form>
-        <button id="btn">Cadastrar</button>
     </div>
-<script src="../src/cadastro.js"></script>
+<script src="/src/cadastro.js"></script>
 </body>
 </html>

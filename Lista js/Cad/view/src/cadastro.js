@@ -1,34 +1,55 @@
-import { CreateUser } from "../../controller/cadastroController";
+const div = document.querySelector(".content");
+const form = document.getElementById("cadastro-form");
 
-const div = document.querySelector('.content');
-
-function getvalue(){
+function getvalue() {
     return {
-        name:document.getElementById('name').value,
-        email:document.getElementById('email').value,
-        password:document.getElementById('password').value
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+    };
+}
+
+function limparMensagemAnterior() {
+    const mensagem = document.querySelector(".pass, .err");
+    if (mensagem) {
+        mensagem.remove();
     }
 }
 
-function validationSaida(v){
-    if(v){
-        const p = document.createElement('p');
-        p.className='pass';
-        p.textContent = 'Conta criada!';
-        div.appendChild(p)
-    }else{
-        const p = document.createElement('p');
-        p.className='err';
-        p.textContent = 'Erro ao criar conta';
-        div.appendChild(p)
+function validationSaida(v) {
+    limparMensagemAnterior();
+
+    const p = document.createElement("p");
+
+    if (v) {
+        p.className = "pass";
+        p.textContent = "Conta criada!";
+    } else {
+        p.className = "err";
+        p.textContent = "Erro ao criar conta";
     }
+
+    div.appendChild(p);
 }
 
-function main(){
+async function main(event) {
+    event.preventDefault();
+
     const values = getvalue();
-    const result = CreateUser(values);
-    if(result){
+    const response = await fetch("/users", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+    });
+
+    if (response.ok) {
         validationSaida(true);
+        form.reset();
+        return;
     }
     validationSaida(false);
 }
+
+form.addEventListener("submit", main);

@@ -1,4 +1,4 @@
-import { DataBase } from "./dbModel";
+import { DataBase } from "./dbModel.js";
 import bcrypt from "bcrypt";
 
 export class User {
