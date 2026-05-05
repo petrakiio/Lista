@@ -16,7 +16,7 @@ export class User {
         return await bcrypt.hash(this.password, 10);
     }
 
-    async Insert() {
+    async Save() {
         const db = new DataBase();
         const conn = await db.connect();
 

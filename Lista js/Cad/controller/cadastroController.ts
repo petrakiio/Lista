@@ -3,14 +3,14 @@ import { User } from "../model/userModel";
 interface Usuario {
     name: string;
     email: string;
-    password: string; 
+    password: string;
 }
 
-function formatname(name:string){
+function formatname(name: string) {
     return name
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '');
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, "");
 }
 
 function validation(values: Usuario): Usuario | null {
@@ -27,11 +27,18 @@ function validation(values: Usuario): Usuario | null {
     return values;
 }
 
-export function CreateUser(values: Usuario){
-    const result:Usuario | null = validation(values);
-    if(result){
-        return new User(result.name,result.email,result.password);
-    }else{
+export async function CreateUser(values: Usuario) {
+    const result: Usuario | null = validation(values);
+
+    if (result) {
+        try {
+            const user = new User(result.name, result.email, result.password);
+            return await user.Save();
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return false;
+        }
+    } else {
         return false;
     }
 }

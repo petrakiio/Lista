@@ -1,4 +1,4 @@
-
+import { CreateUser } from "../../controller/cadastroController";
 
 const div = document.querySelector('.content');
 
@@ -26,5 +26,9 @@ function validationSaida(v){
 
 function main(){
     const values = getvalue();
-    
+    const result = CreateUser(values);
+    if(result){
+        validationSaida(true);
+    }
+    validationSaida(false);
 }
